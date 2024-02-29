@@ -25,7 +25,7 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
       });
     }
 
-    reply.status(500).send();
+    throw error;
   }
 
   return reply.status(201).send();
