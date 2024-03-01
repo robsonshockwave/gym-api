@@ -6,15 +6,17 @@
   "scripts": {
     "dev": "tsx watch src/server.ts",
     "start": "node build/server.js",
-    "buld": "tsup src --out-dir build",
+    "build": "tsup src --out-dir build",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "20.11.21",
+    "@vitest/coverage-v8": "1.3.1",
     "prisma": "5.10.2",
     "tsup": "^8.0.2",
     "tsx": "^4.7.1",
