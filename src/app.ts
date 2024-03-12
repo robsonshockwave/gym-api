@@ -6,8 +6,23 @@ import fastifyJwt from '@fastify/jwt';
 import { usersRoutes } from './http/controllers/users/routes';
 import { gymsRoutes } from './http/controllers/gyms/routes';
 import { checkInsRoutes } from './http/controllers/check-ins/routes';
+import cors from '@fastify/cors';
 
 export const app = fastify();
+
+app.register(cors, {
+  origin: true,
+  credentials: true,
+});
+
+{
+  /** No front-end é preciso adicionar o seguinte código para conseguir setar o refreshToken nos cookies do navegador:
+   * const api = axios.create({
+   *  baseURL: 'http://localhost:3333',
+   *  withCredentials: true,
+   * })
+   */
+}
 
 app.register(fastifyJwt, {
   secret: env.JWT_SECRET,

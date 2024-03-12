@@ -43,7 +43,7 @@ export async function authenticate(
       .setCookie('refreshToken', refreshToken, {
         path: '/',
         secure: true, // não vai conseguir ler o cookie se não for https/o front não acessa a string
-        sameSite: true, // só vai enviar o cookie se a requisição for do mesmo site
+        sameSite: true, // só vai enviar o cookie se a requisição for do mesmo site/dominio
         httpOnly: true, // somente o servidor pode ler o cookie
       })
       .send({
