@@ -28,9 +28,27 @@ export async function authenticate(
       }
     );
 
-    return reply.status(200).send({
-      token,
-    });
+    const refreshToken = await reply.jwtSign(
+      {},
+      {
+        sign: {
+          sub: user.id,
+          expiresIn: '7d',
+        },
+      }
+    );
+
+    return reply
+      .status(200)
+      .setCookie('refreshToken', refreshToken, {
+        path: '/',
+        secure: true, // não vai conseguir ler o cookie se não for https/o front não acessa a string
+        sameSite: true, // só vai enviar o cookie se a requisição for do mesmo site
+        httpOnly: true, // somente o servidor pode ler o cookie
+      })
+      .send({
+        token,
+      });
   } catch (error) {
     if (error instanceof InvalidCredentialsError) {
       return reply.status(400).send({
