@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
 
     services:
-      gym-api-pg:
+      postgres:
       image: bitnami/postgresql
       ports:
         - '5432:5432'
